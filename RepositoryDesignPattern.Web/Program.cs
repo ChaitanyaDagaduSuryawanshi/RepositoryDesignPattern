@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RepositoryDesignPattern.Data.Contexts;
+
 namespace RepositoryDesignPattern.Web
 {
     public class Program
@@ -8,6 +11,9 @@ namespace RepositoryDesignPattern.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
